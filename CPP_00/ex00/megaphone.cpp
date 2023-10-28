@@ -23,6 +23,5 @@ int main(int argc, char **argv){
         i++;
     }
     std::cout << "\n";
-    
     return (0);
 }

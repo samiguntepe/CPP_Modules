@@ -1,8 +1,7 @@
-#ifndef CONTACT_HPP
-#define CONTACT_HPP
+#ifndef CLASSCONTACT_HPP
+#define CLASSCONTACT_HPP
 
 #include <iostream>
-#include <string>
 
 class Contact{	
 public:
@@ -18,5 +17,7 @@ public:
 
 
 };
+
+void	contact_parcer();
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+#ifndef CLASSPHONEBOOK_HPP
+#define CLASSPHONEBOOK_HPP
 
 class PhoneBook
 {	public:

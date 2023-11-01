@@ -6,10 +6,9 @@
 int main()
 {
 	std::string command;
-	std::cout << YELLOW << "Welcome to my Phone Book\n" << END << std::endl;
+	std::cout << PURPLE << "Welcome to my Phone Book\n" << END << std::endl;
 	write_program(&command);
-	while (1)
-	{
+	do{
 			if (command == "ADD")
 			{
 				contact_parcer();
@@ -17,12 +16,9 @@ int main()
 			}
 			else if (command == "SEARCH")
 			{
-				std::cout << "arandı";
-				break;
+				view_phonebook();
 			}
-			else if (command == "EXIT")
-				return (0);
-			else
+			else if (command != "EXIT")
 				write_program(&command);
-	}
+	}while (command != "EXIT");
 }

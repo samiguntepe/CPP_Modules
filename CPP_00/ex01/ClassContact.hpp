@@ -8,14 +8,8 @@ public:
 	std::string name;
 	std::string surname;
 	std::string nickname;
+	std::string phonenumber;
 	std::string darksecret;
-	
-	// Contact()
-	// {
-
-	// }
-
-
 };
 
 void	contact_parcer();

@@ -3,6 +3,12 @@
 #include <iostream>
 #include "main.hpp"
 
+void	write_program(std::string* command)
+{
+		std::cout << SPC << "PhoneBook:" << END << " " << std::ends;
+		std::getline(std::cin, *command);
+}
+
 int main()
 {
 	std::string command;

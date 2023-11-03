@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include "ClassContact.hpp"
-class PhoneBook
-{	public:
+class PhoneBook{
+  private:
 	Contact people[8];
+  public:
+	void	view_phonebook();
+	void	write_table(std::string str);
+	Contact	*getPeople(Contact *people);
 };
 
-void	view_phonebook();
-void	write_table(std::string str);
 
 #endif

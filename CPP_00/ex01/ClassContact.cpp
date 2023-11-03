@@ -2,16 +2,15 @@
 #include "ClassPhonebook.hpp"
 #include "main.hpp"
 
-void	contact_parcer()
+Contact::contact_parcer(PhoneBook *PhoneBook)
 {
 	static int count;
-	Contact classContact;
-	PhoneBook classPhonebook;
+	
 	std::cout << GRAY << "\n****************************" << END << std::endl;
 	std::cout << "Name: " << std::ends;
-	std::getline(std::cin, classPhonebook.people[count].name);
+	std::getline(std::cin, );
 	std::cout << "Surname: " << std::ends;
-	std::getline(std::cin, classPhonebook.people[count].surname);
+	std::getline(std::cin, PhoneBook->getPeople());
 	std::cout << "Nickname: " << std::ends;
 	std::getline(std::cin, classPhonebook.people[count].nickname);
 	std::cout << "Phone number: " << std::ends;

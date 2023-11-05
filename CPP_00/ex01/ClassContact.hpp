@@ -2,7 +2,6 @@
 #define CLASSCONTACT_HPP
 
 #include <iostream>
-#include "ClassPhonebook.hpp"
 
 class Contact{	
   private:
@@ -12,8 +11,9 @@ class Contact{
 	std::string phonenumber;
 	std::string darksecret;
   public:
-
-	void	contact_parcer(PhoneBook *PhoneBook);
+	void		contact_parcer(class PhoneBook);
+	std::string	geter(std::string);
+	void setter(std::string, std::string);
 };
 
 

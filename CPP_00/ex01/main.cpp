@@ -11,18 +11,20 @@ void	write_program(std::string* command)
 
 int main()
 {
+	Contact 	objContact;
+	PhoneBook 	objPhoneBook;
 	std::string command;
 	std::cout << PURPLE << "Welcome to my Phone Book\n" << END << std::endl;
 	do{
 		write_program(&command);
 		if (command == "ADD")
 		{
-			contact_parcer();
+			objContact.contact_parcer(objPhoneBook);
 			
 		}
 		else if (command == "SEARCH")
 		{
-			view_phonebook();
+			objPhoneBook.view_phonebook(objPhoneBook);
 		}
 	}while (command != "EXIT");
 }

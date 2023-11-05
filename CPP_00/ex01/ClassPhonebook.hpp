@@ -8,10 +8,10 @@ class PhoneBook{
   private:
 	Contact people[8];
   public:
-	void			view_phonebook(class PhoneBook);
+	void			view_phonebook();
 	void			write_table(std::string);
-	void			setter(int, std::string, std::string);
 	Contact*		geter();
+	void			parcer();
 };
 
 

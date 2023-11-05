@@ -11,7 +11,6 @@ class Contact{
 	std::string phonenumber;
 	std::string darksecret;
   public:
-	void		contact_parcer(class PhoneBook);
 	std::string	geter(std::string);
 	void setter(std::string, std::string);
 };

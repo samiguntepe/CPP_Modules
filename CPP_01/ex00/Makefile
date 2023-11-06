@@ -1,6 +1,6 @@
 NAME	= zombie
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -std=c++98
 SRCS	= main.cpp Zombie.cpp randomChump.cpp randomChump.cpp
 GREEN	= \033[0;32m
 RED		= \033[0;31m

@@ -1,6 +1,6 @@
 NAME	= phonebook
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
+CFLAGS	= -Wall -Wextra -Werror
 SRCS	= ClassPhonebook.cpp ClassContact.cpp main.cpp
 GREEN	= \033[0;32m
 RED		= \033[0;31m

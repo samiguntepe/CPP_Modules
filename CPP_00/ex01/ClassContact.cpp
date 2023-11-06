@@ -1,6 +1,4 @@
 #include "ClassContact.hpp"
-#include "ClassPhonebook.hpp"
-
 
 std::string	Contact::geter(std::string str){
 	if (str == "name")

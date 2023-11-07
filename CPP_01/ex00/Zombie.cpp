@@ -2,5 +2,5 @@
 
 void	Zombie::announce(void)
 {
-	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

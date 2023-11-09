@@ -15,6 +15,6 @@ int main()
 	{
 		std::cout << newZombie->get() << std::ends;
 		newZombie[i].announce();
-		// delete newZombie++;
 	}
+		delete[] newZombie;
 }

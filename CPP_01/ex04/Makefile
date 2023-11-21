@@ -1,7 +1,7 @@
-NAME	= output
+NAME	= replace
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS	= main.cpp
+SRCS	= main.cpp replace.cpp
 GREEN	= \033[0;32m
 RED		= \033[0;31m
 CODE 	= \033[m
@@ -12,6 +12,7 @@ all:
 
 clean:
 	@rm -rf $(NAME)
+	@rm -rf *.replace
 	@echo "$(RED)[DELETED]$(CODE)"
 
 fclean: clean

@@ -17,22 +17,14 @@ std::string	fileReplace(std::string str, std::string target, std::string replace
 std::string	fileRead(std::string filename)
 {
 	std::ifstream	file(filename);
-	std::string		text, textLine;
+	std::string		text;
 
 	if (!file.is_open())
 	{
 		std::cerr << "File is not opened." << std::endl;
 		exit(1);
 	}
-
-	while (std::getline(file, textLine, '\n'))
-	{
-		text.append(textLine);
-		if( textLine.)
-
-		// if (text.back() == '\n')
-		// 	text.append("\n");
-	}
+	std::getline(file, text, '\0');
 	file.close();
 	return (text);
 }

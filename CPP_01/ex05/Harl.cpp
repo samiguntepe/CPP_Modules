@@ -20,16 +20,18 @@ void	Harl::error()
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void Harl::complain(const std::string level) {
-    const char* levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    ComplainFunc funcs[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+void Harl::complain(std::string level)
+{
 
-    size_t size = sizeof(levels) / sizeof(levels[0]);
+    void (Harl::*funcs[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-    for (size_t i = 0; i < size; ++i) {
-        if (level == levels[i]) {
+    for (int i = 0; i < 4; i++)
+    {
+        if (levels[i] == level)
+        {
             (this->*funcs[i])();
-            return;
+            break;
         }
     }
 }

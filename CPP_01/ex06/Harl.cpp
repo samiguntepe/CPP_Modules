@@ -22,27 +22,9 @@ void	Harl::error()
 
 void Harl::complain(std::string level)
 {
-	int i = 0;
 
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl::*funcs[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    char levels[] = {DEBUG, INFO, WARNING, ERROR};
 
-	while(level != levels[i] && i < 4)
-		i++;
-	switch (i)
-	{
-		case 0:
-			debug();
-			break;
-		case 1:
-			info();
-			break;
-		case 2:
-			warning();
-			break;
-		case 3:
-			error();
-			break;
-		default:
-			std::cout<<"Hatalı giriş"<<std::endl;
-	}
+
 }

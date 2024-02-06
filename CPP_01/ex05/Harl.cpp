@@ -25,24 +25,14 @@ void Harl::complain(std::string level)
 	int i = 0;
 
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	funcs functionArray[] = {
+			&Harl::debug,
+			&Harl::info,
+			&Harl::warning,
+			&Harl::error
+		};
 
 	while(level != levels[i] && i < 4)
 		i++;
-	switch (i)
-	{
-		case 0:
-			debug();
-			break;
-		case 1:
-			info();
-			break;
-		case 2:
-			warning();
-			break;
-		case 3:
-			error();
-			break;
-		default:
-			std::cout<<"Hatalı giriş"<<std::endl;
-	}
+	(this->*functionArray[i])();
 }

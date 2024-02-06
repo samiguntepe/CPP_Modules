@@ -21,7 +21,7 @@ std::string	fileRead(std::string filename)
 
 	if (!file.is_open())
 	{
-		std::cerr << "File is not opened." << std::endl;
+		std::cout << "File is not opened." << std::endl;
 		exit(1);
 	}
 	std::getline(file, text, '\0');
@@ -35,7 +35,7 @@ void	fileWrite(std::string filename, std::string text)
 
 	if (!file.is_open())
 	{
-		std::cerr << "File is not created." << std::endl;
+		std::cout << "File is not created." << std::endl;
 		exit(1);
 	}
 	file << text << std::ends;

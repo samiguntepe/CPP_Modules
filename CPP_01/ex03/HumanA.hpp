@@ -10,7 +10,7 @@ class HumanA
 	std::string name;
 	Weapon &Weapon;
  public:
-	HumanA(std::string _name, class Weapon &obj) : name(_name), Weapon(obj){};
+	HumanA(std::string _name, class Weapon &wep) : name(_name), Weapon(wep){};
 	~HumanA(){};
 	void	attack();
 };

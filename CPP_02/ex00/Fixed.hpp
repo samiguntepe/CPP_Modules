@@ -3,19 +3,23 @@
 
 #include <iostream>
 
-class Fixed {
-public:
-    Fixed(); // Varsayılan kurucu
-    Fixed(const Fixed &other); // Kopyalama kurucusu
-    Fixed &operator=(const Fixed &other); // Kopyalama atama operatörü
-    ~Fixed(); // Yıkıcı
+using std::cout;
+using std::endl;
 
-    int getRawBits(void) const; // Sabit nokta değerinin ham değerini döndürür
-    void setRawBits(int const raw); // Sabit noktalı sayının ham değerini ayarlar
-
-private:
-    int fixedPointValue; // Sabit noktalı sayı değerini depolar
-    static const int fractionalBits = 8; // Kesirli bitlerin sayısını depolar
+class Fixed
+{
+ private:
+	int num;
+	static const int bits_num = 8;
+ public:
+	Fixed() : num(0){
+		cout << "Default constructor called" << endl;
+	};
+	~Fixed(){
+		cout << "Destructor called" << endl;
+	};
+	int getRawBits(void) const;
+	void setRawBits(int const raw);
 };
 
 #endif

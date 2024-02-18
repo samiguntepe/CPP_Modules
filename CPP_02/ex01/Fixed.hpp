@@ -20,4 +20,5 @@ class Fixed
 	Fixed &operator=(const Fixed &newFix);
 };
 
+
 #endif

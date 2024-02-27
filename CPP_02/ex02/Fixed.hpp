@@ -23,6 +23,10 @@ class Fixed
 	float toFloat( void ) const;
 	int toInt( void ) const;
 	Fixed &operator=(const Fixed &newFix);
+	Fixed operator+(const Fixed &fix_num);
+	Fixed &operator-(const Fixed &fix_num);
+	Fixed &operator/(const Fixed &fix_num);
+	Fixed &operator*(const Fixed &fix_num);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed& fixed);

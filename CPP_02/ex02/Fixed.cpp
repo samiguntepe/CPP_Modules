@@ -41,6 +41,16 @@ Fixed::Fixed(const Fixed &source)
 	*this = source;
 }
 
+float Fixed::toFloat( void ) const
+{
+    return ((float)this->num / 256);
+}
+int Fixed::toInt( void ) const
+{
+	cout << this->num << endl;
+    return (this->num / 256);
+}
+
 Fixed	&Fixed::operator=(const Fixed &newFix)
 {
 	cout << "Copy assignment operator called" << endl;
@@ -51,17 +61,14 @@ Fixed	&Fixed::operator=(const Fixed &newFix)
 	return *this;
 }
 
+Fixed Fixed::operator+(const Fixed &fixed_num)
+{
+	Fixed sum = this->num + fixed_num.num;
+	return sum;
+}
+
 std::ostream &operator<<(std::ostream &out, const Fixed& fixed)
 {
 	out << fixed.toFloat();
 	return (out);
-}
-
-float Fixed::toFloat( void ) const
-{
-    return ((float)this->num / 256);
-}
-int Fixed::toInt( void ) const
-{
-    return (this->num / 256);
 }

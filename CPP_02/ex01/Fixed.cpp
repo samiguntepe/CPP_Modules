@@ -1,33 +1,33 @@
 #include "Fixed.hpp"
 #include <cmath>
 
+void	Fixed::setRawBits(int const raw)
+{
+	value = raw;
+}
+
 int	Fixed::getRawBits() const
 {
 	cout << "getRawBits member function called" << endl;
-	return num;
-}
-
-void	Fixed::setRawBits(int const raw)
-{
-	num = raw;
+	return value;
 }
 
 Fixed::Fixed()
 {
 	cout << "Default constructor called" << endl;
-	num = 0;
+	value = 0;
 }
 
 Fixed::Fixed(int val)
 {
 	cout << "Int constructor called" << endl;
-	num = val * (1 << bits_num);
+	value = val * (1 << bits_value);
 }
 
 Fixed::Fixed(float val)
 {
 	cout << "Float constructor called" << endl;
-	this->num = roundf(val * (1 << bits_num));
+	this->value = roundf(val * (1 << bits_value));
 }
 
 Fixed::~Fixed()
@@ -46,7 +46,7 @@ Fixed	&Fixed::operator=(const Fixed &newFix)
 	cout << "Copy assignment operator called" << endl;
 	if(this != &newFix)
 	{
-		this->num = newFix.num;
+		this->value = newFix.value;
 	}
 	return *this;
 }
@@ -59,9 +59,9 @@ std::ostream &operator<<(std::ostream &out, const Fixed& fixed)
 
 float Fixed::toFloat( void ) const
 {
-    return ((float)this->num / 256);
+    return ((float)this->value / 256);
 }
 int Fixed::toInt( void ) const
 {
-    return (this->num / 256);
+    return (this->value / 256);
 }

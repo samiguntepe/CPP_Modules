@@ -10,23 +10,37 @@ using std::endl;
 class Fixed
 {
  private:
-	int num;
-	static const int bits_num = 8;
+	int value;
+	static const int bits_value = 8;
  public:
 	Fixed();
 	Fixed(int);
 	Fixed(float);
 	~Fixed();
-	int getRawBits(void) const;
-	void setRawBits(int const raw);
 	Fixed(const Fixed &source);
-	float toFloat( void ) const;
-	int toInt( void ) const;
-	Fixed &operator=(const Fixed &newFix);
-	Fixed operator+(const Fixed &fix_num);
-	Fixed &operator-(const Fixed &fix_num);
-	Fixed &operator/(const Fixed &fix_num);
-	Fixed &operator*(const Fixed &fix_num);
+	int 	getRawBits(void) const;
+	void 	setRawBits(int const raw);
+	float 	toFloat( void ) const;
+	int 	toInt( void ) const;
+	Fixed 	&operator=(const Fixed &newFix);
+	Fixed	operator+(const Fixed& fixed);
+	Fixed	operator-(const Fixed& fixed);
+	Fixed	operator*(const Fixed& fixed);
+	Fixed	operator/(const Fixed& fixed);
+	Fixed&	operator++(void);
+	Fixed&	operator--(void);
+	Fixed	operator++(int);
+	Fixed	operator--(int);
+	bool	operator>(const Fixed& fixed) const;
+	bool	operator<(const Fixed& fixed) const;
+	bool	operator>=(const Fixed& fixed) const;
+	bool	operator<=(const Fixed& fixed) const;
+	bool	operator==(const Fixed& fixed) const;
+	bool	operator!=(const Fixed& fixed) const;
+	static Fixed	&min(Fixed& a, Fixed& b);
+	static Fixed	&max(Fixed& a, Fixed& b);
+	const static Fixed	&min(const Fixed& a, const Fixed& b);
+	const static Fixed	&max(const Fixed& a, const Fixed& b);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed& fixed);

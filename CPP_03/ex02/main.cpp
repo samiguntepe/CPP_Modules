@@ -3,9 +3,9 @@
 
 int main() 
 {
-    FragTrap fragtrap1("Fraggy1");
-    fragtrap1.attack("Target");
-    fragtrap1.highFivesGuys();
+    FragTrap frag("foo");
+    frag.attack("target");
+    frag.highFivesGuys();
 
     std::cout << std::endl;
 

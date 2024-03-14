@@ -9,9 +9,9 @@ FragTrap::FragTrap() : ClapTrap()
     std::cout << "FragTrap is created!" << std::endl;
 }
 
-FragTrap::FragTrap(std::string _name) : ClapTrap(_name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-    this->Name = _name;
+    this->Name = name;
     this->hit_point = 100;
     this->energy_points = 100;
     this->attack_damage = 30;
@@ -38,7 +38,7 @@ FragTrap &FragTrap::operator=(const FragTrap &obj)
         this->attack_damage = obj.attack_damage;
         this->energy_points = obj.energy_points;
     }
-    std::cout << "Copy assignation operator called" << std::endl;
+    std::cout << "Copy assignment operator called" << std::endl;
     return (*this);
 }
 

@@ -23,15 +23,17 @@ int main()
 	std::string ideas2 = dog.getBrain()->getIdeas();
 	std::cout << GREEN << &ideas2 << END << std::endl;
 
-	Dog dog1;
-    Dog dog2(dog1); // Copy constructor called
-
-    // Check if the brains are deep copies
-    assert(dog1.getBrain() != dog2.getBrain());
-
-    std::cout << "The brains are deep copies." << std::endl;
 
     delete j;
     delete i;
+
+	//deep copy control:
+	Dog dog1;
+    Dog dog2(dog1);
+
+    if(dog1.getBrain() != dog2.getBrain())
+    	std::cout << GREEN << "The brains are deep copies." << END << std::endl;
+	else
+		std::cout << YELLOW << "The brains are not deep copies." << END << std::endl;
     return 0;
 }

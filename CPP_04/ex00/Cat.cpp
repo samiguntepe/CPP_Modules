@@ -8,7 +8,7 @@ Cat::Cat(void)
 
 void	Cat::makeSound(void) const
 {
-    std::cout << "Meow!" << std::endl;
+    std::cout << YELLOW << "Meow!" << END << std::endl;
 }
 
 Cat::~Cat(void)

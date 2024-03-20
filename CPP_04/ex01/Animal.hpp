@@ -4,6 +4,10 @@
 #include <iostream>
 #include "Brain.hpp"
 
+# define YELLOW		"\033[0;33m"
+# define GREEN		"\033[0;32m"
+# define END		"\033[0m"
+
 class Animal
 {
     protected:

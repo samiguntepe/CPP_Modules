@@ -10,7 +10,7 @@ Cat::Cat(void)
 
 void	Cat::makeSound(void) const
 {
-    std::cout << "Meow!" << std::endl;
+    std::cout << YELLOW << "Meow!" << END << std::endl;
 }
 
 Cat::Cat(const Cat& cat)
@@ -31,8 +31,8 @@ Cat& Cat::operator=(const Cat& cat)
 
 Cat::~Cat(void)
 {
-    std::cout << this->type << " destructor called" << std::endl;
-    delete this->brain;
+	std::cout << this->type << " destructor called" << std::endl;
+	delete this->brain;
 }
 
 Brain *Cat::getBrain()

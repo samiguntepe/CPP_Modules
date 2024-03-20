@@ -25,3 +25,16 @@ Brain& Brain::operator=(const Brain& brain)
     }
     return *this;
 }
+
+std::string Brain::getIdeas()
+{
+	return *ideas;
+}
+
+void Brain::setIdeas(std::string idea)
+{
+	for (size_t i = 0; i < 100; i++)
+	{
+		this->ideas[i] = idea;
+	}
+}

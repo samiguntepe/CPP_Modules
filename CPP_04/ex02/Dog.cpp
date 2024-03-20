@@ -10,7 +10,7 @@ Dog::Dog(void)
 
 void	Dog::makeSound(void) const
 {
-    std::cout << "Woof!" << std::endl;
+    std::cout << GREEN << "Woof!" << END <<std::endl;
 }
 
 Dog::Dog(const Dog& Dog)
@@ -33,4 +33,9 @@ Dog::~Dog(void)
 {
     std::cout << this->type << " destructor called" << std::endl;
     delete this->brain;
+}
+
+Brain *Dog::getBrain()
+{
+	return brain;
 }

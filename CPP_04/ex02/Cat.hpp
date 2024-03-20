@@ -16,6 +16,7 @@ class Cat : public AAnimal
 	 	Cat( const Cat& src );
     	Cat& operator=( const Cat& src );
 		void	makeSound(void) const;
+		Brain *getBrain();
 };
 
 #endif

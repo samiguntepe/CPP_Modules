@@ -4,21 +4,20 @@
 
 int main( void )
 {
-    const AAnimal* j = new Dog();
-    const AAnimal* i = new Cat();
+	const AAnimal *j = new Dog();
+    const AAnimal *i = new Cat();
 
+    j->makeSound();
+    i->makeSound();
+    Cat c;
+    Dog d;
+    c.getBrain()->setIdeas("I am a cat");
+    c.getBrain()->setIdeas("I am 100. cat");
+    d.getBrain()->setIdeas("I am not a cat");
+    std::cout << GREEN << (c.getBrain()->getIdeas()) << END << std::endl;
+    std::cout << GREEN << (c.getBrain()->getIdeas()) << END << std::endl;
+    std::cout << GREEN << (d.getBrain()->getIdeas()) << END << std::endl;
     delete j;
     delete i;
-
-    Dog basic;
-    {
-        Dog tmp = basic;
-    }
-
-    const AAnimal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
-    for ( int i = 0; i < 4; i++ ) {
-        delete animals[i];
-    }
-
     return 0;
 }

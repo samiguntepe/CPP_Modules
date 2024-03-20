@@ -33,7 +33,7 @@ Animal& Animal::operator=(const Animal& animal)
 
 void	Animal::makeSound(void) const
 {
-    std::cout << "Animal makeSound called" << std::endl;
+    std::cout << GREEN << "Animal makeSound called" << END << std::endl;
 }
 
 Animal::~Animal(void)

@@ -4,39 +4,34 @@
 
 int main()
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    Cat a;
-    std::cout << "**--------------------------------**" << std::endl;
-            std::cout << a.getBrain()->getIdeas() << std::endl;
-    std::cout << "**--------------------------------**" << std::endl;
+    const Animal *j = new Dog();
+    const Animal *i = new Cat();
+    j->makeSound();
+    i->makeSound();
+    Cat cat;
+    Dog dog;
+    cat.getBrain()->setIdeas("I am a cat");
+    cat.getBrain()->setIdeas("I am 100. cat");
+    dog.getBrain()->setIdeas("I am not a cat");
 
-    int Acount = 4;
-    Animal* animals[Acount];
+    std::cout << YELLOW <<  (cat.getBrain()->getIdeas()) << END << std::endl;
+    std::cout << YELLOW << (cat.getBrain()->getIdeas()) << END << std::endl;
+    std::cout << YELLOW << (dog.getBrain()->getIdeas()) << END << std::endl;
 
-    for (int i = 0; i < (Acount / 2); i++)
-    {
-        animals[i] = new Dog();
-    }
-    for (int i = (Acount / 2); i < Acount; i++)
-    {
-        animals[i] = new Cat();
-    }
-    for (int i = 0; i < Acount; i++)
-    {
-        animals[i]->makeSound();
-    }
-    for (int i = 0; i < Acount; i++)
-    {
-        std::cout<<"Type: "<<animals[i]->getType()<<std::endl;
-    }
-    std::cout << "**-----------DELETE-------------------**" << std::endl;
-    for (int indx = 0; indx < Acount; indx++)
-    {
-        delete animals[indx];
-    }
+	std::string ideas = cat.getBrain()->getIdeas();
+	std::cout << GREEN <<  &ideas <<  END << std::endl;
+	std::string ideas2 = dog.getBrain()->getIdeas();
+	std::cout << GREEN << &ideas2 << END << std::endl;
+
+	Dog dog1;
+    Dog dog2(dog1); // Copy constructor called
+
+    // Check if the brains are deep copies
+    assert(dog1.getBrain() != dog2.getBrain());
+
+    std::cout << "The brains are deep copies." << std::endl;
+
     delete j;
     delete i;
-    
     return 0;
 }

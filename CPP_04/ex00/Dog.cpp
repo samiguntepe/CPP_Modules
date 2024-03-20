@@ -8,7 +8,7 @@ Dog::Dog(void)
 
 void	Dog::makeSound(void) const
 {
-    std::cout << "Woof!" << std::endl;
+    std::cout << GREEN << "Woof!" << END <<std::endl;
 }
 
 Dog::~Dog(void)

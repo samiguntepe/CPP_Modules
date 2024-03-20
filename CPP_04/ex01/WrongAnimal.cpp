@@ -31,7 +31,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& animal)
 
 void	WrongAnimal::makeSound(void) const
 {
-    std::cout << "WrongAnimal makeSound called" << std::endl;
+    std::cout << GREEN << "WrongAnimal makeSound called" << END << std::endl;
 }
 
 WrongAnimal::~WrongAnimal(void)

@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+# define GREEN		"\033[0;32m"
+# define END		"\033[0m"
+
 class WrongAnimal
 {
     protected:

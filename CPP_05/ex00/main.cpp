@@ -3,12 +3,12 @@
 int main()
 {
 	Bureaucrat b("Bob", 10);
-	std::cout << b << std::endl;
+	std::cout << b;
 	b.incGrade();
-	std::cout << b << std::endl;
+	std::cout << b;
 	b.decGrade();
-	std::cout << b << std::endl;
-	Bureaucrat be("Jack", -8);
-	std::cout << be << std::endl;
+	std::cout << b;
+	Bureaucrat be("Jack", 0);
+	std::cout << be;
 	return 0;
 }

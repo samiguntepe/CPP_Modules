@@ -3,25 +3,23 @@
 
 int main()
 {
-	Bureaucrat bureaucrat_1("Manager", 3);
-	Bureaucrat bureaucrat_2("Assistant", 43);
+	Bureaucrat bureaucrat_1("Manager", 120);
+	Bureaucrat bureaucrat_2("Assistant", 50);
+	
 	std::cout << bureaucrat_1;
 	std::cout << bureaucrat_2;
 
 	Form form_1("Form_1", 5, 10);
-	std::cout << "**************************************" << std::endl;
-	std::cout << form_1 << std::endl;
-	std::cout << "**************************************" << std::endl;
-	
-	Form form_2("Form_2", 5499, 10);
-	std::cout << "**************************************" << std::endl;
-	
-	bureaucrat_1.signForm(form_1);
+	Form form_2("Form_2", 40, 100);
 
-	std::cout << form_1 << std::endl;
-	
-	bureaucrat_2.signForm(form_1);
-	
-	std::cout << form_1 << std::endl;
+	std::cout << form_1;
+	std::cout << form_2;
+
+	bureaucrat_1.signForm(form_1);
+	bureaucrat_1.signForm(form_2);
+
+	std::cout << form_1;
+	std::cout << form_2;
+
 	return 0;
 }

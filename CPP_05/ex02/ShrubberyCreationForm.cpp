@@ -1,27 +1,20 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137) {
-	return ;
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm::AForm("shrubbery creation", 145, 137), _target("Default") {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm::AForm("shrubbery creation", 145, 137), _target(target) {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) :  AForm::AForm("shrubbery creation", 145, 137) {
+    *this = copy;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137) {
-	this->_target = target;
-}
-
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy) {
-	this->_target = copy._target;
-}
-
-ShrubberyCreationForm::~ShrubberyCreationForm(void) {
-	return ;
-}
+ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy) {
-	if (this == &copy)
-		return *this;
-	this->_target = copy._target;
-	return *this;
+    if (this != &copy)
+        _target = copy._target;
+    return *this; 
 }
 
 void ShrubberyCreationForm::specificExecute(void) const {
@@ -40,10 +33,4 @@ void ShrubberyCreationForm::specificExecute(void) const {
 	file << "      ||      " << std::endl;
 	file << std::endl;
 	file.close();
-}
-
-
-std::ostream &operator<<(std::ostream &o, const ShrubberyCreationForm &rhs) {
-	o << rhs.getName() << " (signed: " << rhs.getSigned() << ", sign grade required: " << rhs.getGradeToSign() << ", exec grade required: " << rhs.getGradeToExecute() << ")";
-	return o;
 }

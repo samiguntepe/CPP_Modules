@@ -1,45 +1,41 @@
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#pragma once
 
+#include <exception>
 #include <iostream>
-#include "Bureaucrat.hpp"
-
 
 class Bureaucrat;
-class AForm
-{
+
+class AForm {
     private:
-        const std::string name;
+        const std::string _name;
         bool _isSigned;
-	    const int gradeToSign;
-	    const int gradeToExecute;
-	public:
-        AForm();
-        ~AForm();
-        AForm(const AForm &other);
-        AForm &operator=(const AForm &other);
-        AForm(std::string name, int gradeToSign, int gradeToExecute);
-        void beSigned(Bureaucrat const &other);
-
-		std::string	getName() const;
-		bool getSigned() const;
-		int getGradeToSign() const;
-		int getGradeToExecute() const;
-
-	class GradeTooHighException: public std::exception
-	{
-		public:
-			virtual const char *what() const throw();
-	};
-	class GradeTooLowException: public std::exception
-	{
-		public:
-			virtual const char *what() const throw();
-	};
-
-		virtual void execute(Bureaucrat const &executor) const = 0;
+        const size_t _requiredGradeToSign;
+        const size_t _requiredGradeToExecute;
+    public:
+        AForm(void);
+        virtual ~AForm(void);
+        AForm(std::string name);
+        AForm(std::string name,
+            int requiredGradeToSign,
+            int requiredGradeToExecute);
+        AForm(const AForm& copy);
+        AForm &operator=(const AForm& copy);
+        std::string getName(void) const;
+        size_t getGradeToSign(void) const;
+        size_t getGradeToExec(void) const;
+        std::string getIsSigned(void) const;
+        void beSigned(Bureaucrat& b);
+        void execute(const Bureaucrat& executor) const;
+        virtual void specificExecute(void) const = 0;
+        class GradeTooHighException: public std::exception {
+            const char* what() const throw();
+        };
+        class GradeTooLowException: public std::exception {
+            const char* what() const throw();
+        };
+        class FormNotSignedException: public std::exception {
+            const char* what() const throw();
+        };
 };
 
-std::ostream& operator<<(std::ostream& os, const AForm& form);
-
-#endif
+std::ostream &operator<<(std::ostream& o, AForm& f);

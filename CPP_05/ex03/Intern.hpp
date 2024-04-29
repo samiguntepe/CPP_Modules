@@ -1,21 +1,20 @@
-#ifndef INTERN_HPP
-#define INTERN_HPP
+#pragma once
 
-#include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-
-class Intern
-{
-public:
-    Intern();
-    Intern(const Intern &src);
-    ~Intern();
-    Intern &operator=(const Intern &src);
-
-    AForm *makeForm(const std::string &formName, const std::string &target);
+class Intern {
+    public:
+        Intern(void);
+        Intern(const Intern& copy);
+        Intern &operator=(const Intern& copy);
+        ~Intern(void);
+        AForm* makeForm(std::string name, std::string target);
+        AForm* makePresidentialPardon(std::string target);
+        AForm* makeRobotomyRequest(std::string target);
+        AForm* makeShrubberyCreation(std::string target);
+        class FormNotFoundException: public std::exception {
+            const char* what() const throw();
+        };
 };
-
-#endif

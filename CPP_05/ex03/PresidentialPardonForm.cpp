@@ -1,43 +1,21 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Pardon Form", 25, 5) , target("Default"){}
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm::AForm("PresidentialPardonForm", 25, 5), _target("Default") {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string _target) : AForm("Presidential Pardon Form", 25, 5)
-{
-    this->target = _target;
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm::AForm("PresidentialPardonForm", 25, 5), _target(target) {}
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) : AForm::AForm("PresidentialPardonForm", 25, 5) {
+    *this = copy;
 }
 
-PresidentialPardonForm::~PresidentialPardonForm(){}
+PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other)
-{
-    *this = other;
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm& copy) {
+    if (this != &copy)
+        _target = copy._target;
+    return *this; 
 }
 
-PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
-{
-    if (this == &other)
-        return *this;
-    this->target = other.target;
-    return *this;
-}
-
-void PresidentialPardonForm::execute(Bureaucrat const &executor) const
-{
-    try
-    {
-        if(this->getSigned())
-        {
-            if(executor.getGrade() <= this->getGradeToExecute())
-                std::cout << this->target << " has been pardoned by Zafod Beeblebrox" << std::endl;
-            else
-                throw AForm::GradeTooLowException();
-        }
-        else
-            throw std::out_of_range("Form not signed");
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+void PresidentialPardonForm::specificExecute(void) const {
+    std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

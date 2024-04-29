@@ -30,12 +30,12 @@ int main()
         a.executeForm(scf);
         a.signAForm(scf);
         for (size_t i = 0; i < 10; ++i) {
-            a.incGrade();
+            a.increaseGrade();
         }
         a.signAForm(scf);
         a.executeForm(scf);
         for (size_t i = 0; i < 10; ++i) {
-            a.incGrade();
+            a.increaseGrade();
         }
         a.executeForm(scf);
     }

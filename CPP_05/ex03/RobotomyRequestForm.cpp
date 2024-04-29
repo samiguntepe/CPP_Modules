@@ -1,54 +1,28 @@
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), target("Default")
-{
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm::AForm("RobotomyRequestForm", 72, 45), _target("Default") {}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm::AForm("RobotomyRequestForm", 72, 45), _target(target) {}
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm::AForm("RobotomyRequestForm", 72, 45) {
+    *this = copy;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string _target) : AForm("RobotomyRequestForm", 72, 45), target(_target)
-{
+RobotomyRequestForm::~RobotomyRequestForm(void) {}
+
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm& copy) {
+    if (this != &copy)
+       _target = copy._target;
+    return *this; 
 }
 
-RobotomyRequestForm::~RobotomyRequestForm()
-{
+void RobotomyRequestForm::specificExecute(void) const {
+    std::srand(time(0));
+    size_t t = std::rand();
+    std::cout << "*DRILLING NOISES*" << std::endl;
+    if (t % 2 == 0)
+        std::cout << _target << " has been robotomized!" << std::endl;
+    else
+        std::cout << "Robotomy " <<_target << " failed!" << std::endl;       
 }
-
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), target(other.target)
-{
-}
-
-RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
-{
-    if (this == &other)
-        return *this;
-    AForm::operator=(other);
-    this->target = other.target;
-    return *this;
-}
-
-void RobotomyRequestForm::execute(Bureaucrat const &executor) const
-{
-    srand(time(NULL));
-    try
-    {
-        if(this->getSigned())
-        {
-            if(executor.getGrade() <= this->getGradeToExecute())
-            {
-                std::cout << "Drilling noises" << std::endl;
-                if(rand() % 2)
-                    std::cout << this->target << " has been robotomized successfully" << std::endl;
-                else
-                std::cout << this->target << " robotomization failed" << std::endl;
-            }
-            else
-                throw GradeTooLowException();
-        }
-        else
-            throw std::out_of_range("Form not signed");
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-}
-

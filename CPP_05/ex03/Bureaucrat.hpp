@@ -1,41 +1,31 @@
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+#pragma once
 
-#include <iostream>
 #include "AForm.hpp"
 
-class AForm;
-
-class Bureaucrat
-{
-	private:
-		const std::string Name;
-		int Grade;
-	public:
-		Bureaucrat();
-		Bureaucrat(std::string name, int grade);
-		Bureaucrat(const Bureaucrat &copy);
-		Bureaucrat &operator=(const Bureaucrat &obj);
-		~Bureaucrat();
-		int getGrade() const;
-		std::string getName() const;
-		void incGrade();
-		void decGrade();
-		void signAForm(AForm &form);
-        void executeForm(AForm const &form);
-
-	class GradeTooHighException: public std::exception
-	{
-		public:
-			virtual const char *what() const throw();
-	};
-	class GradeTooLowException: public std::exception
-	{
-		public:
-			virtual const char *what() const throw();
-	};
+class Bureaucrat {
+    private:
+        const std::string _name;
+        size_t _grade;
+        void setGrade(int n);
+    public:
+        Bureaucrat(void);
+        ~Bureaucrat(void);
+        Bureaucrat(std::string name);
+        Bureaucrat(std::string name, size_t grade);
+        Bureaucrat(const Bureaucrat& copy);
+        Bureaucrat &operator=(const Bureaucrat& copy);
+        std::string getName(void) const;
+        size_t getGrade(void) const;
+        void increaseGrade(void);
+        void decreaseGrade(void);
+        void signAForm(AForm& f);
+        void executeForm(AForm const & form);
+        class GradeTooHighException: public std::exception {
+            const char* what() const throw();
+        };
+        class GradeTooLowException: public std::exception {
+            const char* what() const throw();
+        };
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
-
-#endif
+std::ostream &operator<<(std::ostream& o, const Bureaucrat& b);

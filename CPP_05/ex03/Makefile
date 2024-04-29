@@ -1,8 +1,8 @@
 NAME	= Bureaucrat
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRCS	= Bureaucrat.cpp main.cpp AForm.cpp ShrubberyCreationForm.cpp \
-		RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+SRCS	= main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
+FLAGS = c++ -std=c++98 -Wall -Wextra -Werror
 OBJS    = $(SRCS:.cpp=.o)
 GREEN	= \033[0;32m
 RED		= \033[0;31m

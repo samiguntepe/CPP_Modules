@@ -1,40 +1,53 @@
 #include "Intern.hpp"
 
-Intern::Intern(){}
+Intern::Intern(void) {}
 
-Intern::Intern(const Intern &src)
-{
-    *this = src;
+Intern::Intern(const Intern& copy) {
+    *this = copy;
 }
 
-Intern::~Intern(){}
-
-Intern &Intern::operator=(const Intern &src)
-{
-    (void)src;
-    return (*this);
+Intern &Intern::operator=(const Intern& copy) {
+    (void)copy;
+    return *this;
 }
 
-AForm *Intern::makeForm(const std::string &formName, const std::string &target)
-{
-    std::string formNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-    AForm *formTypes[3] = {new ShrubberyCreationForm(target), new RobotomyRequestForm(target), new PresidentialPardonForm(target)};
+Intern::~Intern(void) {}
 
-    for (int i = 0; i < 3; i++)
-    {
-        if (formName == formNames[i])
-        {
-            std::cout << "Intern creates " << formName << std::endl;
-            delete formTypes[(i + 2) % 3];
-			delete formTypes[(i + 1) % 3];
-            return (formTypes[i]);
-        }
+const char* Intern::FormNotFoundException::what() const throw() {
+    return "Intern: Form Not Found";
+}
+
+AForm *Intern::makePresidentialPardon(std::string target) {
+    std::cout << "Intern creates Presidential Pardon Form" << std::endl;
+    return new PresidentialPardonForm(target);
+}
+
+AForm *Intern::makeRobotomyRequest(std::string target) {
+    std::cout << "Intern creates Robotomy Request Form" << std::endl;
+    return new RobotomyRequestForm(target);
+}
+
+AForm *Intern::makeShrubberyCreation(std::string target) {
+    std::cout << "Intern creates Shrubbery Creation Form" << std::endl;
+    return new ShrubberyCreationForm(target);
+}
+
+AForm *Intern::makeForm(std::string name, std::string target) {
+    std::string names[3] = {
+        "presidential pardon",
+        "robotomy request",
+        "shrubbery creation"
+    };
+
+    AForm* (Intern::*ptr[3])(std::string) = {
+        &Intern::makePresidentialPardon,
+        &Intern::makeRobotomyRequest,
+        &Intern::makeShrubberyCreation,
+    };
+    
+    for (size_t i = 0; i < 3; ++i) {
+        if (names[i] == name)
+            return (this->*ptr[i])(target);
     }
-    std::cout << "Intern could not create " << formName << std::endl;
-	delete formTypes[2];
-	delete formTypes[0];
-	delete formTypes[1];
-	throw std::out_of_range("Form not found");
-
-    return (NULL);
+    throw Intern::FormNotFoundException();
 }

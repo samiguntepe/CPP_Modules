@@ -1,37 +1,29 @@
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
+#include <ctime>
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45) {
-	return ;
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm::AForm("robotomy request", 72, 45), _target("Default") {}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm::AForm("robotomy request", 72, 45), _target(target) {}
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm::AForm("robotomy request", 72, 45) {
+    *this = copy;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45) {
-	this->_target = target;
-}
-
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm(copy) {
-	this->_target = copy._target;
-}
-
-RobotomyRequestForm::~RobotomyRequestForm(void) {
-	return ;
-}
-
-void	RobotomyRequestForm::specificExecute(void) const {
-	std::cout << "*drilling noises*" << std::endl;
-	if (rand() % 2)
-		std::cout << this->_target << " has been robotomized successfully." << std::endl;
-	else
-		std::cout << this->_target << " robotomization failed." << std::endl;
-}
+RobotomyRequestForm::~RobotomyRequestForm(void) {}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm& copy) {
-	if (this == &copy)
-		return *this;
-	this->_target = copy._target;
-	return *this;
+    if (this != &copy)
+       _target = copy._target;
+    return *this; 
 }
 
-std::ostream &operator<<(std::ostream &o, const RobotomyRequestForm &rhs) {
-	o << rhs.getName() << " (signed: " << rhs.getSigned() << ", sign grade required: " << rhs.getGradeToSign() << ", exec grade required: " << rhs.getGradeToExecute() << ")";
-	return o;
+void RobotomyRequestForm::specificExecute(void) const {
+    std::srand(time(0));
+    size_t t = std::rand();
+    std::cout << "*DRILLING NOISES*" << std::endl;
+    if (t % 2 == 0)
+        std::cout << _target << " has been robotomized!" << std::endl;
+    else
+        std::cout << "Robotomy " <<_target << " failed!" << std::endl;       
 }

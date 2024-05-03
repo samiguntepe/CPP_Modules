@@ -33,7 +33,7 @@ void	ScalarConverter::convertChar(const std::string& val) {
 		std::cout << RED <<  "Impossible" << END <<std::endl;
 		return ;
 	}
-	char c = (char)(atoi(val.c_str()));
+	char c = static_cast<char>(atoi(val.c_str()));
 	if (c < 32 || c > 126)
 	{
 		std::cout << RED << "Non displayable" << END << std::endl;
@@ -53,7 +53,7 @@ void	ScalarConverter::convertInt(const std::string& val) {
 
 void	ScalarConverter::convertFloat(const std::string& val) {
 	float number = std::atof(val.c_str());
-	if (number - (int)(number) == 0)
+	if (number - static_cast<int>(number) == 0)
 	{
 		std::cout << number << ".0f" << std::endl;
 		return ;
@@ -63,7 +63,7 @@ void	ScalarConverter::convertFloat(const std::string& val) {
 
 void	ScalarConverter::convertDouble(const std::string& val) {
 	double number = std::strtod(val.c_str(), NULL);
-	if (number - (int)(number) == 0)
+	if (number - static_cast<int>(number) == 0)
 	{
 		std::cout << number << ".0" << std::endl;
 		return ;
@@ -83,7 +83,7 @@ bool	ScalarConverter::isValid(std::string& input) {
 		return true;
 	else if (input.length() == 1 && std::isalpha(input[0]))
 	{
-		input = std::to_string((int)input[0]);
+		input = std::to_string(static_cast<int>(input[0]));
 		return true;
 	}
 	for (size_t i = 0; i < input.size(); i++)

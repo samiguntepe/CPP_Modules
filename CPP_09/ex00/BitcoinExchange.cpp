@@ -1,18 +1,18 @@
 #include "BitcoinExchange.hpp"
 
-std::string			Bitcoin::_input;
-std::map<std::string, double>	Bitcoin::_data;
+std::string			Bitcoin::Input;
+std::map<std::string, double>	Bitcoin::Data;
 
-void	Bitcoin::checkArg(int ac, char **av)
+void	Bitcoin::checkArg(int argc, char **argv)
 {
-	if(ac > 2)
+	if(argc > 2)
 		throw(NotEnoughtInputs());
-	else if(ac < 2)
+	else if(argc < 2)
 		throw(TooLargeNumber());
-	Bitcoin::checkFile(av[1]);
+	Bitcoin::checkFile(argv[1]);
 }
 
-void Bitcoin::error_w(std::string str, std::string str2)
+void Bitcoin::error_what(std::string str, std::string str2)
 {
 	if(str2 != "NULL")
 		std::cerr << RED << str << str2 << END << std::endl;
@@ -36,15 +36,15 @@ bool Bitcoin::DateCheck(std::string date)
 	if(date_year.length() == 4 || date_month.length() == 2 || date_day.length() == 2)
 	{
 		if(std::atoi(date_year.c_str()) <= 2008)
-			error_w("Error: bad input => ", date);
+			error_what("Error: bad input => ", date);
 		else if(std::atoi(date_month.c_str()) > 12 || std::atoi(date_month.c_str()) < 1)
-			error_w("Error: bad input => *", date);
+			error_what("Error: bad input => *", date);
 		else if(std::atoi(date_day.c_str()) > 31 || std::atoi(date_day.c_str()) < 1)
-			error_w("Error: bad input => ", date);
+			error_what("Error: bad input => ", date);
 		else if(std::atoi(date_year.c_str()) == 2009 && std::atoi(date_month.c_str()) == 1 && std::atoi(date_day.c_str()) == 1)
-			error_w("Error: bad input => ", date);
+			error_what("Error: bad input => ", date);
 		else if(std::atoi(date_year.c_str()) > 2022)
-			error_w("Error: bad input => ", date);
+			error_what("Error: bad input => ", date);
 		else
 			return (true);
 		return (false);
@@ -54,76 +54,76 @@ bool Bitcoin::DateCheck(std::string date)
 
 }
 
-void Bitcoin::checkFile(std::string av)
+void Bitcoin::checkFile(std::string argv)
 {
-	std::ifstream read;
+	std::ifstream inputFileStream;
 	size_t delimiterPos;
 	std::string date;
-	std::string tmp_btc_value;
+	std::string tempBtcValue;
 
-	Bitcoin::setContainer_data();
+	Bitcoin::setContainerData();
 
-	read.open(av.c_str());
-	if(!read.is_open())
+	inputFileStream.open(argv.c_str());
+	if(!inputFileStream.is_open())
 	{
 		throw(FileDoesNotExist());
 	}
-	_input = av;
-	getline(read, av);
-	if(av.compare("date | value"))
+	Input = argv;
+	getline(inputFileStream, argv);
+	if(argv.compare("date | value"))
 	{
-		error_w("Error: at the beginning of the file should be 'date | value'", "NULL");
+		error_what("Error: at the beginning of the file should be 'date | value'", "NULL");
 		return ;
 	}
-	while (getline(read, av))
+	while (getline(inputFileStream, argv))
 	{
-		delimiterPos = av.find("|");
-		date = av.substr(0, delimiterPos);
+		delimiterPos = argv.find("|");
+		date = argv.substr(0, delimiterPos);
 		delimiterPos = date.find(" ");
 		date = date.substr(0,delimiterPos);
-		delimiterPos = av.find("|");
+		delimiterPos = argv.find("|");
 		if(delimiterPos == std::string::npos)
 		{
-			error_w("Error: bad input => ", date);
+			error_what("Error: bad input => ", date);
 			continue;
 		}
-		tmp_btc_value = av.substr(delimiterPos, av.length());
-		delimiterPos = tmp_btc_value.find(" ") + 1;
-		tmp_btc_value = tmp_btc_value.substr(delimiterPos, tmp_btc_value.length());
+		tempBtcValue = argv.substr(delimiterPos, argv.length());
+		delimiterPos = tempBtcValue.find(" ") + 1;
+		tempBtcValue = tempBtcValue.substr(delimiterPos, tempBtcValue.length());
 		if(Bitcoin::DateCheck(date) == false)
 			continue;
-		if(!tmp_btc_value.compare("|"))
+		if(!tempBtcValue.compare("|"))
 		{
-			error_w("Error: Input File Entered Values Are Incorrect.", "NULL");
+			error_what("Error: Input File Entered Values Are Incorrect.", "NULL");
 			continue;
 		}
-		if(std::strtod(tmp_btc_value.c_str(), NULL) < 0)
+		if(std::strtod(tempBtcValue.c_str(), NULL) < 0)
 		{
-			error_w("Error: not a positive number.", "NULL");
+			error_what("Error: not a positive number.", "NULL");
 			continue;
 		}
-		if(Bitcoin::setContainer_calculate(date) * std::strtod(tmp_btc_value.c_str(), NULL) > INT_MAX)
+		if(Bitcoin::setContainer_calculate(date) * std::strtod(tempBtcValue.c_str(), NULL) > INT_MAX)
 		{
-			error_w("Error: too large a number.", "NULL");
+			error_what("Error: too large a number.", "NULL");
 			continue;
 		}
 		if(Bitcoin::checkvalue(date) == false)
 			continue;
-		std::cout << date << " => " << tmp_btc_value << " = "<< std::ends;
-		std::cout << Bitcoin::setContainer_calculate(date) * std::strtod(tmp_btc_value.c_str(), NULL) << std::endl;
+		std::cout << date << " => " << tempBtcValue << " = "<< std::ends;
+		std::cout << Bitcoin::setContainer_calculate(date) * std::strtod(tempBtcValue.c_str(), NULL) << std::endl;
 		continue;
 	}
-	read.close();
+	inputFileStream.close();
 }
 
-void Bitcoin::setContainer_data(void)
+void Bitcoin::setContainerData(void)
 {
 	std::ifstream file("data.csv");
 	if(!file)
 		throw(EnteredValuesAreIncorrect());
 	std::string line;
 	std::string date;
-	std::string tmp_btc_value;
+	std::string tempBtcValue;
 	double btc_value;
 	size_t delimiterPos;
 
@@ -134,9 +134,9 @@ void Bitcoin::setContainer_data(void)
 		if(delimiterPos == std::string::npos)
 			throw(EnteredValuesAreIncorrect());
 		date = line.substr(0,delimiterPos);
-		tmp_btc_value = line.substr(delimiterPos+1, line.length());
-		btc_value = std::strtod(tmp_btc_value.c_str(), NULL);
-		_data[date] = btc_value;
+		tempBtcValue = line.substr(delimiterPos+1, line.length());
+		btc_value = std::strtod(tempBtcValue.c_str(), NULL);
+		Data[date] = btc_value;
 	}
 	file.close();
 }
@@ -144,10 +144,10 @@ void Bitcoin::setContainer_data(void)
 bool Bitcoin::checkvalue(std::string date)
 {
 	std::map<std::string, double>::iterator m;
-	m = Bitcoin::_data.find(date);
-	if(m == Bitcoin::_data.end())
+	m = Bitcoin::Data.find(date);
+	if(m == Bitcoin::Data.end())
 	{
-		m = Bitcoin::_data.upper_bound(date);
+		m = Bitcoin::Data.upper_bound(date);
 	}
 	return (true);
 }
@@ -155,8 +155,8 @@ bool Bitcoin::checkvalue(std::string date)
 double Bitcoin::setContainer_calculate(std::string date)
 {
 	std::map<std::string, double>::iterator m;
-	m = Bitcoin::_data.find(date);
-	if(m == Bitcoin::_data.end())
-		m = --Bitcoin::_data.upper_bound(date);
+	m = Bitcoin::Data.find(date);
+	if(m == Bitcoin::Data.end())
+		m = --Bitcoin::Data.upper_bound(date);
 	return (m->second);
 }

@@ -1,6 +1,6 @@
 #ifndef BITCOINEXCHANGE_HPP
- #define BITCOINEXCHANGE_HPP
-/*-----------color------------------*/
+#define BITCOINEXCHANGE_HPP
+
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
 # define GREEN		"\033[0;32m"
@@ -11,7 +11,7 @@
 # define WHITE		"\033[0;37m"
 # define END		"\033[m"
 # define RESET		"\033[0m"
-/*----------------------------------*/
+
 # include <iostream>
 # include <map>
 # include <fstream>
@@ -21,16 +21,16 @@ class Bitcoin
 {
 
 private:
-	static std::string						_input;
-	static std::map<std::string, double>	_data;
+	static std::string						Input;
+	static std::map<std::string, double>	Data;
 
 public:
 	static void			checkArg( int index, char **str );
 	static void			checkFile( std::string variable);
-	static void			setContainer_data(void);
+	static void			setContainerData(void);
 	static bool			DateCheck(std::string date);
 	static bool 		checkvalue(std::string date);
-	static void 		error_w(std::string str, std::string str2);
+	static void 		error_what(std::string str, std::string str2);
 	static double		setContainer_calculate(std::string date);
 
 	class NotEnoughtInputs : public std::exception

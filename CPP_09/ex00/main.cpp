@@ -1,10 +1,10 @@
 #include "BitcoinExchange.hpp"
 
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
 	try
 	{
-		Bitcoin::checkArg(ac, av);
+		Bitcoin::checkArg(argc, argv);
 	}
 	catch(std::exception& e)
 	{

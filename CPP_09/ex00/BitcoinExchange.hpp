@@ -1,16 +1,11 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
-# define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
 # define GREEN		"\033[0;32m"
 # define YELLOW		"\033[0;33m"
 # define BLUE		"\033[0;34m"
-# define PURPLE		"\033[0;35m"
-# define CYAN		"\033[0;36m"
-# define WHITE		"\033[0;37m"
 # define END		"\033[m"
-# define RESET		"\033[0m"
 
 # include <iostream>
 # include <map>
@@ -29,7 +24,6 @@ public:
 	static void			checkFile( std::string variable);
 	static void			setContainerData(void);
 	static bool			DateCheck(std::string date);
-	static bool 		checkvalue(std::string date);
 	static void 		error_what(std::string str, std::string str2);
 	static double		setContainer_calculate(std::string date);
 

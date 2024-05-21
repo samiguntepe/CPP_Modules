@@ -107,8 +107,6 @@ void Bitcoin::checkFile(std::string argv)
 			error_what("Error: too large a number.", "NULL");
 			continue;
 		}
-		if(Bitcoin::checkvalue(date) == false)
-			continue;
 		std::cout << date << " => " << tempBtcValue << " = "<< std::ends;
 		std::cout << Bitcoin::setContainer_calculate(date) * std::strtod(tempBtcValue.c_str(), NULL) << std::endl;
 		continue;
@@ -139,17 +137,6 @@ void Bitcoin::setContainerData(void)
 		Data[date] = btc_value;
 	}
 	file.close();
-}
-
-bool Bitcoin::checkvalue(std::string date)
-{
-	std::map<std::string, double>::iterator m;
-	m = Bitcoin::Data.find(date);
-	if(m == Bitcoin::Data.end())
-	{
-		m = Bitcoin::Data.upper_bound(date);
-	}
-	return (true);
 }
 
 double Bitcoin::setContainer_calculate(std::string date)

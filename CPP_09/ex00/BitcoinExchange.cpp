@@ -41,6 +41,15 @@ bool Bitcoin::DateCheck(std::string date)
 			error_what("Error: bad input => *", date);
 		else if(std::atoi(date_day.c_str()) > 31 || std::atoi(date_day.c_str()) < 1)
 			error_what("Error: bad input => ", date);
+		else if(std::atoi(date_year.c_str()) % 4 == 0)
+		{
+			if (std::atoi(date_month.c_str()) == 2 && std::atoi(date_day.c_str()) > 29)
+			{
+				error_what("Error: bad input => ", date);
+			}
+		}
+		else if (std::atoi(date_month.c_str()) == 2 && std::atoi(date_day.c_str()) > 28)
+			error_what("Error: bad input => ", date);
 		else if(std::atoi(date_year.c_str()) == 2009 && std::atoi(date_month.c_str()) == 1 && std::atoi(date_day.c_str()) == 1)
 			error_what("Error: bad input => ", date);
 		else if(std::atoi(date_year.c_str()) > 2022)
@@ -100,6 +109,11 @@ void Bitcoin::checkFile(std::string argv)
 		if(std::strtod(tempBtcValue.c_str(), NULL) < 0)
 		{
 			error_what("Error: not a positive number.", "NULL");
+			continue;
+		}
+		if(std::strtod(tempBtcValue.c_str(), NULL) > 1000)
+		{
+			error_what("Error: number not less than 1000.", "NULL");
 			continue;
 		}
 		if(Bitcoin::setContainer_calculate(date) * std::strtod(tempBtcValue.c_str(), NULL) > INT_MAX)

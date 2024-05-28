@@ -1,4 +1,4 @@
-NAME	= PmergeMe
+NAME	= BitcoinExchange
 FILES	= main.cpp BitcoinExchange.cpp
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 OBJS	= $(FILES:.c=.o)

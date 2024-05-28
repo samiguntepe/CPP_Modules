@@ -1,4 +1,4 @@
-NAME	= PmergeMe
+NAME	= RPN
 FILES	= main.cpp RPN.cpp
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 OBJS	= $(FILES:.c=.o)

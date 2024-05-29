@@ -5,34 +5,39 @@
 
 double RPN::evaluate(const std::string& expression)
 {
-    std::istringstream iss(expression);
-    std::stack<double> stack;
-    std::string token;
+	std::istringstream iss(expression);
+	std::stack<double> stack;
+	std::string token;
 
-    while (iss >> token)
+	while (iss >> token)
 	{
-        if (isOperator(token))
+
+		if (isOperator(token))
 		{
-            if (stack.size() < 2)
-                throw std::runtime_error("Invalid expression");
-            double b = stack.top(); stack.pop();
-            double a = stack.top(); stack.pop();
-            stack.push(applyOperator(token, a, b));
-        }
+			if (stack.size() < 2)
+				throw std::runtime_error("Invalid expression");
+			double b = stack.top(); stack.pop();
+			double a = stack.top(); stack.pop();
+			stack.push(applyOperator(token, a, b));
+		}
 		else
 		{
-            char* end;
-            double value = std::strtod(token.c_str(), &end);
-            if (*end != '\0')
-                throw std::runtime_error("Error");
-            stack.push(value);
-        }
-    }
-    return stack.top();
+			char* end;
+			double value = std::strtod(token.c_str(), &end);
+			if (value < 0 || value > 9)
+			{
+				throw std::runtime_error("Error");
+			}
+			if (*end != '\0')
+				throw std::runtime_error("Error");
+			stack.push(value);
+		}
+	}
+	return stack.top();
 }
 
 bool RPN::isOperator(const std::string& token) {
-    return token == "+" || token == "-" || token == "*" || token == "/";
+	return token == "+" || token == "-" || token == "*" || token == "/";
 }
 
 double RPN::applyOperator(const std::string& op, double a, double b) {
@@ -47,3 +52,8 @@ double RPN::applyOperator(const std::string& op, double a, double b) {
     }
     throw std::runtime_error("Unknown operator: " + op);
 }
+
+// void RPN::check_input(std::string &argv)
+// {
+
+// }

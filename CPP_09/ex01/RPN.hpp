@@ -10,7 +10,8 @@
 
 class RPN {
 public:
-    double evaluate(const std::string& expression);
+    double	evaluate(const std::string& expression);
+	// void	check_input(std::string &argv);
 
 private:
     bool isOperator(const std::string& token);

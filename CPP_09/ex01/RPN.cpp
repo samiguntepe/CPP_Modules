@@ -8,17 +8,18 @@ double RPN::evaluate(const std::string& expression)
 	std::istringstream iss(expression);
 	std::stack<double> stack;
 	std::string token;
+	int op_count = 0;
 
 	while (iss >> token)
 	{
-
 		if (isOperator(token))
 		{
-			if (stack.size() < 2)
+			if (!(stack.size() == 2 || stack.size() == 3))
 				throw std::runtime_error("Invalid expression");
 			double b = stack.top(); stack.pop();
 			double a = stack.top(); stack.pop();
 			stack.push(applyOperator(token, a, b));
+			op_count++;
 		}
 		else
 		{
@@ -31,8 +32,11 @@ double RPN::evaluate(const std::string& expression)
 			if (*end != '\0')
 				throw std::runtime_error("Error");
 			stack.push(value);
+			op_count = 0;
 		}
 	}
+	if (op_count == 0)
+		throw std::runtime_error("Invalid expression");
 	return stack.top();
 }
 
@@ -52,8 +56,3 @@ double RPN::applyOperator(const std::string& op, double a, double b) {
     }
     throw std::runtime_error("Unknown operator: " + op);
 }
-
-// void RPN::check_input(std::string &argv)
-// {
-
-// }

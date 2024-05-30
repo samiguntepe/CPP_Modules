@@ -41,6 +41,11 @@ bool Bitcoin::DateCheck(std::string date)
 			error_what("Error: bad input => *", date);
 		else if(std::atoi(date_day.c_str()) > 31 || std::atoi(date_day.c_str()) < 1)
 			error_what("Error: bad input => ", date);
+		else if(date_month == "4" || date_month == "6" || date_month == "9" || date_month == "11")
+		{
+			if(std::atoi(date_day.c_str()) > 30 || std::atoi(date_day.c_str()) < 1)
+				error_what("Error: bad input => ", date);
+		}
 		else if(std::atoi(date_year.c_str()) % 4 == 0)
 		{
 			if (std::atoi(date_month.c_str()) == 2 && std::atoi(date_day.c_str()) > 29)

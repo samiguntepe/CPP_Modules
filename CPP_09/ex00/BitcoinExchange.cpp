@@ -15,9 +15,9 @@ void	Bitcoin::checkArg(int argc, char **argv)
 void Bitcoin::error_what(std::string str, std::string str2)
 {
 	if(str2 != "NULL")
-		std::cerr << RED << str << str2 << END << std::endl;
+		std::cout << RED << str << str2 << END << std::endl;
 	else
-		std::cerr << RED << str << END << std::endl;
+		std::cout << RED << str << END << std::endl;
 }
 
 bool Bitcoin::DateCheck(std::string date)

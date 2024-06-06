@@ -29,10 +29,10 @@ bool Bitcoin::DateCheck(std::string date)
 	std::string date_year;
 
 	pos1 = date.find("-");
-    date_year = date.substr(0, pos1);
     pos2 = date.find("-", pos1 + 1);
-    date_month = date.substr(pos1 + 1, pos2 - pos1 - 1);
+    date_year = date.substr(0, pos1);
     date_day = date.substr(pos2 + 1);
+    date_month = date.substr(pos1 + 1, pos2 - pos1 - 1);
 	if(date_year.length() == 4 || date_month.length() == 2 || date_day.length() == 2)
 	{
 		if(std::atoi(date_year.c_str()) <= 2008)
@@ -46,18 +46,20 @@ bool Bitcoin::DateCheck(std::string date)
 			if(std::atoi(date_day.c_str()) > 30 || std::atoi(date_day.c_str()) < 1)
 				error_what("Error: bad input => ", date);
 		}
+		else if(std::atoi(date_year.c_str()) == 2009 && std::atoi(date_month.c_str()) == 1 && std::atoi(date_day.c_str()) == 1)
+			error_what("Error: bad input => ", date);
+		else if(std::atoi(date_year.c_str()) > 2022)
+			error_what("Error: bad input => ", date);
 		else if(std::atoi(date_year.c_str()) % 4 == 0)
 		{
 			if (std::atoi(date_month.c_str()) == 2 && std::atoi(date_day.c_str()) > 29)
 			{
 				error_what("Error: bad input => ", date);
 			}
+			else
+				return (true);
 		}
 		else if (std::atoi(date_month.c_str()) == 2 && std::atoi(date_day.c_str()) > 28)
-			error_what("Error: bad input => ", date);
-		else if(std::atoi(date_year.c_str()) == 2009 && std::atoi(date_month.c_str()) == 1 && std::atoi(date_day.c_str()) == 1)
-			error_what("Error: bad input => ", date);
-		else if(std::atoi(date_year.c_str()) > 2022)
 			error_what("Error: bad input => ", date);
 		else
 			return (true);

@@ -1,21 +1,32 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <string>
 #include <stack>
-#include <stdexcept>
+#include <string>
+#include <iostream>
+#include <sstream>
 
-# define RED		"\033[0;31m"
-# define END		"\033[m"
 
-class RPN {
-public:
-    double	evaluate(const std::string& expression);
-	// void	check_input(std::string &argv);
+#define PLUS '+'
+#define MINUS '-'
+#define MULTI '*'
+#define DIVIDE '/'
 
-private:
-    bool isOperator(const std::string& token);
-    double applyOperator(const std::string& op, double a, double b);
+class RPN
+{
+    private:
+        std::stack<int> operandStack;
+
+    public:
+        RPN();
+        ~RPN();
+        RPN(const RPN& other);
+        RPN& operator=(const RPN& other);
+
+        void processInput(std::string input);
+        int checkToken(std::string token);
+        int stringToInteger(const std::string& str);
+        void exitError();
 };
 
 #endif
